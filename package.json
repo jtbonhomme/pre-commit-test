@@ -1,0 +1,35 @@
+{
+  "name": "pre-commit-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "commit-wizard"
+  },
+  "author": "Jean-Thierry Bonhomme <jtbonhomme@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "pre-git": "^3.11.1"
+  },
+  "config": {
+    "pre-git": {
+      "enabled": true,
+      "commit-msg": "conventional",
+      "pre-commit": [
+        "git status",
+        "echo \"pre-commit test\" && exit 0"
+      ],
+      "pre-push": [
+        "rm -rf node_modules",
+        "npm install",
+        "echo \"pre-push test\" && exit 0"
+      ],
+      "post-commit": [
+        "git status"
+      ],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  }
+}
